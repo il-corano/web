@@ -1,0 +1,187 @@
+@font-face {
+  font-family: uthmanic;
+  src: url('https://static-cdn.tarteel.ai/qul/fonts/UthmanicHafs_V22.ttf');
+}
+
+body {
+    background-color: #212830;
+    margin: 0;
+    font-family: "Red Hat Text", sans-serif;
+}
+
+header {
+    top: 0px;
+    position: sticky;
+    width: 100%;
+    height: 54px;
+    justify-self: center;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    background-color: #151b23;
+    border-bottom: 1px #3d444d solid;
+}
+
+.menu a {
+    text-decoration: none;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.opzione {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 50px;
+}
+
+.opzione:hover {
+    cursor: pointer;
+    background-color: #212730;
+}
+
+.opzione i {
+    color: #9198a1;
+    font-size: 18px;
+}
+
+.opzione p {
+    color: #f4f7f5;
+    font-family: "Red Hat Text", sans-serif;
+    font-size: 16px;
+}
+
+.selezionato {
+    border-bottom: 3px #6db5f8 solid;
+}
+
+.barra_laterale {
+    position: fixed;
+    top: 54px;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #151b23;
+    border-right: 1px #3d444d solid;
+    color: white;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.barra_laterale.chiusa {
+    transform: translateX(-100%);
+}
+
+.toggle_barra_laterale {
+    position: absolute;
+    top: 20px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    background: #151b23;
+    border: 1px #3d444d solid;
+    border-left: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    font-size: 18px;
+}
+
+.barra_laterale.chiusa~.contenitore_capitolo {
+    margin-left: 0;
+}
+
+.contenitore_capitolo {
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+
+.capitolo p {
+    margin: 0;
+}
+
+.capitolo {
+    font-size: 16px;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.4s;
+}
+
+.capitolo:hover {
+    background-color: #212730;
+}
+
+.versi {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.verso {
+    display: flex;
+    border-bottom: 1px #3d444d solid;
+    padding: 10px 0
+}
+
+.verso .contenuto {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.verso .testo_arabo {
+    direction: rtl;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    font-family: uthmanic;
+    font-size: 36px;
+    color: #f4f7f5;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    white-space: normal;
+    text-align: right;
+}
+
+.verso .testo_tradotto {
+    width: 100%;
+    font-size: 18px;
+    font-family: "Red Hat Text", sans-serif;
+    color: #f4f7f5;
+}
+
+.verso .testo_tradotto .autore {
+    color: #5b6169;
+}
+
+.parola {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.parola:hover {
+    color:#6db5f8;   
+}
+
+.parola:hover span {
+    color: inherit !important;
+}
+
+.traslitterazione {
+    margin-top: 5px;
+    font-size: 14px;
+    font-family: "Red Hat Text", sans-serif;
+}

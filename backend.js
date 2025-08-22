@@ -1,5 +1,5 @@
 async function popola_lista_capitoli() {
-    const r = await fetch('../database/Corano.json');
+    const r = await fetch('dati.json');
     const dati = await r.json();
 
     const lista_capitoli = document.getElementById('lista_capitoli');
@@ -12,7 +12,7 @@ async function popola_lista_capitoli() {
         if (capitolo.basmala === true && capitolo.indice !== 1) {
             contenitore.innerHTML += `
                 <div class="basmala" style="display: flex; justify-content: center; align-items: center;">
-                    <img src="../pages/assets/basmala.png" style="width: 340px; filter: invert(100%);">
+                    <img src="basmala.png" style="width: 340px; filter: invert(100%);">
                 </div>`;
         }
 
@@ -78,3 +78,11 @@ async function popola_lista_capitoli() {
 }
 
 popola_lista_capitoli();
+
+
+const barra = document.getElementById('barra_laterale');
+const bottone = document.getElementById('bottone_toggle');
+
+bottone.addEventListener('click', () => {
+    barra.classList.toggle('chiusa');
+});
