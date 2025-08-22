@@ -1,0 +1,10 @@
+@font-face {
+  font-family: uthmanic;
+  src: url('https://static-cdn.tarteel.ai/qul/fonts/UthmanicHafs_V22.ttf');
+}
+
+body {
+    background-color: #212830;
+    margin: 0;
+    font-family: 'Segoe UI';
+}

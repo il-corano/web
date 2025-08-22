@@ -1,0 +1,36 @@
+.barra_laterale {
+    position: fixed;
+    top: 54px;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #151b23;
+    border-right: 1px #3d444d solid;
+    color: white;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.barra_laterale.chiusa {
+    transform: translateX(-100%);
+}
+
+.toggle_barra_laterale {
+    position: absolute;
+    top: 20px;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    background: #151b23;
+    border: 1px #3d444d solid;
+    border-left: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    font-size: 18px;
+}
+
+.barra_laterale.chiusa~.contenitore_capitolo {
+    margin-left: 0;
+}

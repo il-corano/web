@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Il Corano</title>
+
+    <link rel="stylesheet" href="design/core.css">
+    <link rel="stylesheet" href="design/header.css">
+    <link rel="stylesheet" href="design/barra_laterale.css">
+    <link rel="stylesheet" href="design/visualizzazione.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css'>
+</head>
+
+<body>
+    <header>
+        <div class="menu">
+            <a href="../index.html">
+                <div class="opzione">
+                    <i class='bxr bx-arrow-left-stroke-square'></i>
+                    <p>Portale</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="opzione selezionato">
+                    <i class='bxr bx-book'></i>
+                    <p>Qurʾān</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="opzione">
+                    <i class='bxr bx-book-library'></i>
+                    <p>Ḥadīṯ</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="opzione">
+                    <i class='bxr bx-user'></i>
+                    <p>Biografie</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="opzione">
+                    <i class='bxr bx-article'></i>
+                    <p>Articoli</p>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="barra_laterale chiusa" id="barra_laterale">
+            <button class="toggle_barra_laterale" id="bottone_toggle">
+                <i class='bxr bx-list-ol'></i> 
+            </button>
+
+            <div id="lista_capitoli">
+
+            </div>
+        </div>
+
+        <div class="contenitore_capitolo">
+            <div class="basmala">
+
+            </div>
+
+            <div class="versi">
+                
+            </div>
+        </div>
+    </main>
+
+    <script src="../backend/popola_lista.js"></script>
+    <script src="../backend/toggle_barra.js"></script>
+</body>
+
+</html>
