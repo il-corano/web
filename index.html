@@ -1,136 +1,69 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Il Corano</title>
-
-    <link rel="stylesheet" href="index.css">
+    <title>Archivio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="particles"></div>
-    
     <header>
-        <nav class="container">
-            <div class="logo">Al-Islam</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#features">Caratteristiche</a></li>
-                <li><a href="#sections">Sezioni</a></li>
-                <li><a href="#contribute">Contribuisci</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo" onclick="showHome(); return false;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    Archivio
+                </a>
+                <div class="search-container">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="Search articles..." id="searchInput">
+                </div>
+                <button class="nav-button" onclick="showHome()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Home
+                </button>
+            </div>
+        </div>
     </header>
 
-    <main class="container">
-        <section id="home" class="hero">
-            <p class="greeting">As-salāmu ʿalaykum wa raḥmatullāhi wa barakātuh</p>
-            <h1>L’impellenza è diffondere la conoscenza</h1>
-            <p>Un'iniziativa pensata per offrire l'opportunità di leggere e studiare il Corano in un formato digitale accessibile e facile da usare, con traduzioni accurate e risorse didattiche di qualità.</p>
-            <a href="#sections" class="btn btn-secondary">Esplora le Sezioni</a>
-        </section>
-
-        <section id="about" class="section">
-            <h2 class="section-title">Il Nostro Obiettivo</h2>
-            <div class="feature-card" style="max-width: 900px; margin: 0 auto;">
-                <p style="color: #c9d1d9; font-size: 18px;">
-                    Il nostro obiettivo è creare una piattaforma che non solo permetta di leggere il Corano, ma che offra le traduzioni in lingua italiana meno errate e risorse didattiche di qualità per accompagnare ogni lettura.
-                </p>
-                <p style="color: #c9d1d9; font-size: 18px; margin-top: 20px;">
-                    Il sito web nasce dalla necessità di colmare il vuoto di risorse in italiano per lo studio dell'Islam. Con questo progetto, vogliamo rendere il Corano più accessibile, in modo che ogni musulmano cittadino italiano possa avvicinarsi al testo sacro con il cuore e la mente aperta, imparando ad applicare i suoi insegnamenti nella vita quotidiana.
-                </p>
-            </div>
-        </section>
-
-        <section id="features" class="section">
-            <h2 class="section-title">Caratteristiche Principali</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📖</div>
-                    <h3>Traduzioni Accurate</h3>
-                    <p>Un'accurata selezione di traduzioni in italiano del Corano sotto consiglio di Šayḫ ʿEliy Vago, con l'obiettivo di offrire il testo più fedele possibile e meno errato in lingua italiana.</p>
+    <div class="container">
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="category-list">
+                    <div class="category-title">Categorie</div>
+                    <div class="category-item active" data-category="Tutti">Tutti</div>
+                    <div class="category-item" data-category="hadith">Ahadith spiegati</div>
                 </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Accessibilità</h3>
-                    <p>Una piattaforma digitale moderna e facile da usare, accessibile da qualsiasi dispositivo per accompagnarti nel tuo percorso di studio.</p>
-                </div>
-            </div>
+            </aside>
 
-            <div class="info-box">
-                <h3>Perché questo progetto è importante?</h3>
-                <p>In Italia, la comunità musulmana è numerosa ma spesso priva di risorse disponibili in lingua italiana che permettano uno studio profondo e accurato dell'Islam. Questo progetto nasce per rispondere a questa esigenza, offrendo una piattaforma che combini la lettura del Corano con risorse aggiuntive che ne facilitano la comprensione e la riflessione.</p>
-                <p style="margin-top: 15px;">La corretta interpretazione del Corano è fondamentale per evitare fraintendimenti e distorsioni. Le traduzioni e i tafsir che offriamo nel sito sono frutto di un'attenta selezione, con l'obiettivo di garantire che i lettori ricevano un'interpretazione il più possibile fedele al messaggio originale del Corano.</p>
-            </div>
-        </section>
+            <main class="content-area">
+                <div id="articlesGrid" class="articles-grid"></div>
+                <div id="articleView" class="article-view hidden"></div>
+            </main>
+        </div>
+    </div>
 
-        <section id="sections" class="section">
-            <h2 class="section-title">Le Tre Sezioni del Sito</h2>
-            <div class="sections-showcase">
-                <div class="section-card">
-                    <div class="feature-icon">📿</div>
-                    <h3>Lettura del Corano</h3>
-                    <p>Accesso completo al testo coranico con qira'at Hafs e regole di tajweed. Studia il Corano con la corretta pronuncia e le regole di recitazione autentiche.</p>
-                    <a href="#" class="btn">Ancora in sviluppo</a>
-                </div>
+    <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
+        <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+        <div class="image-modal-content">
+            <img id="modalImage" src="" alt="Zoomed image">
+        </div>
+        <div class="zoom-controls">
+            <button class="zoom-btn" onclick="zoomIn(event)">+</button>
+            <button class="zoom-btn" onclick="resetZoom(event)">Annulla</button>
+            <button class="zoom-btn" onclick="zoomOut(event)">−</button>
+        </div>
+    </div>
 
-                <div class="section-card">
-                    <div class="feature-icon">📜</div>
-                    <h3>Lettura di Ahadith</h3>
-                    <p>Possibilità di analizzare isnad e consultare traduzioni autentiche prelevate dal progetto Crisalide. Approfondisci la Sunnah con fonti affidabili.</p>
-                    <a href="#" class="btn">Ancora in sviluppo</a>
-                </div>
-
-                <div class="section-card">
-                    <div class="feature-icon">🔍</div>
-                    <h3>Archivio Apologetico</h3>
-                    <p>Una pagina organizzata con vari post apologetici, divisi per sezioni e tag. Risorse per comprendere e difendere la fede islamica.</p>
-                    <a href="#" class="btn">Ancora in sviluppo</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Visione a Lungo Termine</h2>
-            <div class="feature-card" style="max-width: 900px; margin: 0 auto;">
-                <p style="color: #c9d1d9; font-size: 17px;">
-                    Il nostro sogno è quello di rendere questo progetto una risorsa completa per tutti gli italiani, un sito che non solo permetta di leggere e studiare il Corano, ma che diventi anche un luogo di apprendimento continuo, di supporto alla comunità e di crescita spirituale.
-                </p>
-                <ul style="margin-top: 20px; color: #c9d1d9;">
-                    <li>Corsi di lingua araba</li>
-                    <li>Approfondimenti sulla storia dell'Islam</li>
-                    <li>Supporto per chi desidera intraprendere un percorso di avvicinamento alla fede</li>
-                    <li>Creazione di una comunità forte e informata</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="contribute" class="section">
-            <h2 class="section-title">Come Contribuire</h2>
-            <div class="warning-box">
-                <h3>Il tuo contributo è benvenuto!</h3>
-                <p>Se desideri partecipare al progetto o hai suggerimenti su come migliorarlo, sentiti libero di contribuire! Questo progetto è open-source, e ogni contributo è benvenuto.</p>
-                <p style="margin-top: 15px;">Puoi proporre nuove funzionalità o aiutare con la creazione di nuovi contenuti. Basta aprire un post per iniziare!</p>
-                <a href="#" class="btn" style="margin-top: 20px;">Contribuisci al Progetto</a>
-            </div>
-            
-            <div class="feature-card" style="max-width: 900px; margin: 30px auto 0; text-align: center;">
-                <p style="color: #c9d1d9; font-size: 18px;">
-                    Questo progetto è più di un semplice sito web: è un luogo dove la fede, la conoscenza e la comunità si incontrano. Speriamo che attraverso questo progetto, i fratelli e le sorelle in Italia possano (con il permesso di Dio) trovare una risorsa utile per approfondire la loro conoscenza del Corano e per vivere la loro fede con maggiore consapevolezza e determinazione.
-                </p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>Ci auguriamo che questo sito possa essere una fonte di beneficio per te e per la comunità.</p>
-        <p class="dua">🤲</p>
-        <p style="font-weight: 600; color: #58a6ff;">Che Dio ci guidi e ci conceda il successo</p>
-        <p style="margin-top: 30px; font-size: 14px;">© 2025 Progetto Corano - Open Source Initiative</p>
-    </footer>
-
-    <script src="core.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
