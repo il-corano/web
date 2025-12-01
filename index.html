@@ -40,8 +40,9 @@
             <aside class="sidebar">
                 <div class="category-list">
                     <div class="category-title">Categorie</div>
-                    <div class="category-item active" data-category="Tutti">Tutti</div>
+                    <div class="category-item active" data-category="all">Tutti</div>
                     <div class="category-item" data-category="hadith">Ahadith spiegati</div>
+                    <div class="category-item" data-category="fiqh">Fiqh</div>
                 </div>
             </aside>
 
@@ -54,9 +55,21 @@
 
     <div id="imageModal" class="image-modal" onclick="closeImageModal(event)">
         <span class="image-modal-close" onclick="closeImageModal(event)">&times;</span>
+        
+        <div class="image-counter" style="display: none;">1 / 1</div>
+        
+        <button class="nav-btn prev" onclick="event.stopPropagation(); navigateImage('prev')" style="display: none;">
+            ‹
+        </button>
+        
         <div class="image-modal-content">
             <img id="modalImage" src="" alt="Zoomed image">
         </div>
+        
+        <button class="nav-btn next" onclick="event.stopPropagation(); navigateImage('next')" style="display: none;">
+            ›
+        </button>
+        
         <div class="zoom-controls">
             <button class="zoom-btn" onclick="zoomIn(event)">+</button>
             <button class="zoom-btn" onclick="resetZoom(event)">Annulla</button>

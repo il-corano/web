@@ -5,6 +5,8 @@ let currentZoom = 1;
 let isDragging = false;
 let startX, startY;
 let translateX = 0, translateY = 0;
+let currentImageIndex = 0;
+let currentImageArray = [];
 
 // carica i dati degli articoli
 async function loadArticles() {
@@ -17,21 +19,67 @@ async function loadArticles() {
     }
 }
 
-function openImageModal(src) {
+function openImageModal(images, startIndex = 0) {
+    console.log('openImageModal chiamata con:', images, 'index:', startIndex);
     const modal = document.getElementById('imageModal');
     const modalImg = document.getElementById('modalImage');
+    
+    if (!modal || !modalImg) {
+        console.error('Modal o immagine modal non trovati nel DOM');
+        return;
+    }
+    
+    currentImageArray = Array.isArray(images) ? images : [images];
+    currentImageIndex = startIndex;
+    
     modal.classList.add('active');
-    modalImg.src = src;
+    modalImg.src = currentImageArray[currentImageIndex];
     currentZoom = 1;
     translateX = 0;
     translateY = 0;
     updateImageTransform();
+    updateNavigationButtons();
     document.body.style.overflow = 'hidden';
 }
 
+function updateNavigationButtons() {
+    const prevBtn = document.querySelector('.nav-btn.prev');
+    const nextBtn = document.querySelector('.nav-btn.next');
+    const counter = document.querySelector('.image-counter');
+    
+    if (currentImageArray.length > 1) {
+        if (prevBtn) prevBtn.style.display = 'flex';
+        if (nextBtn) nextBtn.style.display = 'flex';
+        if (counter) {
+            counter.style.display = 'block';
+            counter.textContent = `${currentImageIndex + 1} / ${currentImageArray.length}`;
+        }
+    } else {
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (counter) counter.style.display = 'none';
+    }
+}
+
+function navigateImage(direction) {
+    if (direction === 'prev') {
+        currentImageIndex = (currentImageIndex - 1 + currentImageArray.length) % currentImageArray.length;
+    } else {
+        currentImageIndex = (currentImageIndex + 1) % currentImageArray.length;
+    }
+    
+    const modalImg = document.getElementById('modalImage');
+    modalImg.src = currentImageArray[currentImageIndex];
+    currentZoom = 1;
+    translateX = 0;
+    translateY = 0;
+    updateImageTransform();
+    updateNavigationButtons();
+}
+
 function closeImageModal(event) {
-    if (event.target.classList.contains('image-modal') || 
-        event.target.classList.contains('image-modal-close')) {
+    if (event && (event.target.classList.contains('image-modal') || 
+        event.target.classList.contains('image-modal-close'))) {
         const modal = document.getElementById('imageModal');
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
@@ -43,7 +91,9 @@ function closeImageModal(event) {
 
 function updateImageTransform() {
     const modalImg = document.getElementById('modalImage');
-    modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+    if (modalImg) {
+        modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentZoom})`;
+    }
 }
 
 function zoomIn(event) {
@@ -119,10 +169,25 @@ function showArticle(id) {
         if (block.type === 'text') {
             contentHtml += block.content;
         } else if (block.type === 'image') {
+            // Gestione src come array o stringa singola
+            const images = Array.isArray(block.src) ? block.src : [block.src];
+            
+            // Crea la galleria di miniature
+            const thumbnailsHtml = images.map((imgSrc, index) => `
+                <img src="${imgSrc}" 
+                     alt="Image ${index + 1}" 
+                     class="gallery-thumbnail" 
+                     data-images='${JSON.stringify(images).replace(/'/g, "&apos;")}' 
+                     data-index="${index}"
+                     style="cursor: pointer;">
+            `).join('');
+            
             contentHtml += `
                 <div class="article-image-container">
                     <div class="translation-box">
-                        <img src="${block.src}" alt="Article image" class="article-image" onclick="openImageModal('${block.src}')" style="cursor: zoom-in;">
+                        <div class="image-gallery">
+                            ${thumbnailsHtml}
+                        </div>
                         <div class="source-note">${block.sourceNote}</div>
                         <div class="translation-text">${block.translation}</div>
                         <div class="translation-warning">
@@ -158,17 +223,39 @@ function showArticle(id) {
         <h1 class="article-full-title">${article.title}</h1>
         
         <div class="article-full-meta">
-            <span>Published: ${article.date}</span>
+            <span>Pubblicazione: ${article.date}</span>
             <span>•</span>
-            <span>Author: ${article.author}</span>
+            <span>Autore: ${article.author}</span>
             <span>•</span>
-            <span>Category: ${article.category}</span>
+            <span>Categoria: ${article.category}</span>
         </div>
         
         <div class="article-content">
             ${contentHtml}
         </div>
     `;
+    
+    // aggiungi event listener alle immagini DOPO che sono state aggiunte al DOM
+    view.querySelectorAll('.gallery-thumbnail').forEach(img => {
+        img.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const images = JSON.parse(this.dataset.images);
+            const index = parseInt(this.dataset.index);
+            console.log('Immagine cliccata:', images, 'index:', index);
+            openImageModal(images, index);
+        });
+    });
+    
+    // Mantieni il supporto per le vecchie immagini singole
+    view.querySelectorAll('.article-image').forEach(img => {
+        img.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Immagine cliccata:', this.src);
+            openImageModal(this.src);
+        });
+    });
 }
 
 function showHome() {
@@ -195,21 +282,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Search functionality
-    document.getElementById('searchInput').addEventListener('input', function(e) {
-        renderArticles(currentCategory, e.target.value);
-    });
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+            renderArticles(currentCategory, e.target.value);
+        });
+    }
 
     // Image modal interactions
     const modalImage = document.getElementById('modalImage');
     
-    modalImage.addEventListener('mousedown', function(e) {
-        if (currentZoom > 1) {
-            isDragging = true;
-            startX = e.clientX - translateX;
-            startY = e.clientY - translateY;
-            modalImage.style.cursor = 'grabbing';
-        }
-    });
+    if (modalImage) {
+        modalImage.addEventListener('mousedown', function(e) {
+            if (currentZoom > 1) {
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                modalImage.style.cursor = 'grabbing';
+            }
+        });
+
+        modalImage.addEventListener('touchstart', function(e) {
+            if (currentZoom > 1 && e.touches.length === 1) {
+                isDragging = true;
+                startX = e.touches[0].clientX - translateX;
+                startY = e.touches[0].clientY - translateY;
+            }
+        });
+
+        modalImage.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? -0.1 : 0.1;
+            currentZoom = Math.max(0.5, Math.min(5, currentZoom + delta));
+            updateImageTransform();
+        }, { passive: false });
+    }
 
     document.addEventListener('mousemove', function(e) {
         if (isDragging) {
@@ -227,14 +334,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    modalImage.addEventListener('touchstart', function(e) {
-        if (currentZoom > 1 && e.touches.length === 1) {
-            isDragging = true;
-            startX = e.touches[0].clientX - translateX;
-            startY = e.touches[0].clientY - translateY;
-        }
-    });
-
     document.addEventListener('touchmove', function(e) {
         if (isDragging && e.touches.length === 1) {
             e.preventDefault();
@@ -248,20 +347,17 @@ document.addEventListener('DOMContentLoaded', function() {
         isDragging = false;
     });
 
-    modalImage.addEventListener('wheel', function(e) {
-        e.preventDefault();
-        const delta = e.deltaY > 0 ? -0.1 : 0.1;
-        currentZoom = Math.max(0.5, Math.min(5, currentZoom + delta));
-        updateImageTransform();
-    }, { passive: false });
-
     // Close modal on Escape key
     document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            const modal = document.getElementById('imageModal');
-            if (modal.classList.contains('active')) {
+        const modal = document.getElementById('imageModal');
+        if (modal && modal.classList.contains('active')) {
+            if (event.key === 'Escape') {
                 modal.classList.remove('active');
                 document.body.style.overflow = 'auto';
+            } else if (event.key === 'ArrowLeft') {
+                navigateImage('prev');
+            } else if (event.key === 'ArrowRight') {
+                navigateImage('next');
             }
         }
     });
