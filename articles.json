@@ -220,5 +220,37 @@
                 "translation": "I nostri studiosi, che Allah abbia misericordia di loro, hanno affermato che il Corano indica che la jizyah viene riscossa solo dagli uomini adulti in grado di combattere, poiché Allah dice: «Combattete coloro... finché non paghino la jizyah» (Sura at-Tawbah 9:29). Ciò implica che la jizyah è richiesta a coloro che prendono parte al combattimento.Ciò dimostra anche che la jizyah non viene richiesta agli schiavi, anche se sono combattenti, perché non possiedono ricchezze. Il versetto dice «finché non paghino», e una persona che non possiede ricchezze non può «pagare» nulla. Gli studiosi concordano all'unanimità sul fatto che la jizyah viene imposta solo agli uomini liberi e adulti, poiché sono loro che combattono, mentre le donne, i bambini e gli schiavi ne sono esenti."
             }
         ]
+    },
+    {
+        "id": 3,
+        "title": "Sahih Muslim 1403a",
+        "category": "hadith",
+        "date": "3-12-2025",
+        "author": "Vittorio",
+        "excerpt": "L'imam Ad Dhahabi dice che ci sono stati solo due casi in cui Abu Zubayr Al Makki رحمه الله  riporta da Jabir Ibn Abdullah رضي الله عنه senza specificare se lo abbia sentito da lui o meno, e questo hadith è uno di quei casi, rendendolo debole.",
+        "content": [
+            {
+                "type": "text",
+                "content": "L'imam Ad Dhahabi dice che ci sono stati solo due casi in cui Abu Zubayr Al Makki رحمه الله  riporta da Jabir Ibn Abdullah رضي الله عنه senza specificare se lo abbia sentito da lui o meno, e questo hadith è uno di quei casi, rendendolo debole. Ma anche se accettassimo questo hadith, An Nawawi spiega che gli ulama hanno interpretato questo come se Allah ﷻ avesse posto nei cuori degli uomini una forte inclinazione verso le donne, non che le donne si ritirino effettivamente sotto forma di shaytaan."
+            },
+            {
+                "type": "image",
+                "src": "assets/mizan_al-i'tidaal_fi_naqd_ar-rijal_6!335.png",
+                "sourceUrl": "https://ia903400.us.archive.org/10/items/MizaneLitidal1/menr6.pdf",
+                "sourceNote": "Mizan al-i'tidal fi naqd ar-rijal, volume 6, pagina 335 (pagina 335 del pdf) ",
+                "translation": "In Sahih Muslim ci sono diversi hadith in cui Abu al-Zubayr non chiarisce di averli sentiti da Jabir, e cioè (1) senza riferimento a al-Layth, quindi c'è qualcosa che non va (2); tra questi c'è l'hadith: \"Non è lecito a nessuno portare armi a Mecca\". E il hadith: «Il Profeta, che la pace sia su di lui, vide una donna che gli piacque, così andò dalla sua famiglia, Zaynab. E il hadith: «Il divieto di intonacare le tombe. E altro ancora."
+            },
+            {
+                "type": "image",
+                "src": "assets/sharh_sahih_muslim_9!254.png",
+                "sourceUrl": "https://drive.google.com/file/d/14uX-WsNa5Qm1ksaIZ9IfGbvjiOAlxy6b/view",
+                "sourceNote": "Sharh sahih muslim, volume 9, pagina 254 (pagina 254 del pdf)",
+                "translation": "Il suo detto: «In verità, la donna si presenta sotto le sembianze di uno shaytan e si allontana sotto le sembianze di uno shaytan». Gli ulama hanno detto: Il suo significato è un riferimento al desiderio e alla chiamata verso la tentazione da parte sua, perché Allah ha posto nei cuori degli uomini un'inclinazione verso le donne." 
+            },
+            {
+                "type": "text",
+                "content": "L'Imam Ad Dhahabi afferma che egli non menziona esplicitamente di averlo sentito da Jabir, inoltre se si va su sunnah.com (nonostante non sia una fonte al 100% attendibile) se si clicca il bottone per leggere il hadith successivo verrà detto che questo è stato riportato con una catena diversa, senza menzionare le donne che si ritirano sotto forma di shaytan."
+            }
+        ]
     }
 ]
